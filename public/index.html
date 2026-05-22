@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minecraft Bot Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Minecraft Bot Dashboard</h1>
+    <div id="status-badge" class="badge offline">Offline</div>
+  </header>
+
+  <main>
+    <section class="card" id="connect-section">
+      <h2>Connect</h2>
+      <form id="connect-form">
+        <div class="form-row">
+          <label>Server Host
+            <input type="text" id="host" placeholder="e.g. localhost" value="localhost" required />
+          </label>
+          <label>Port
+            <input type="number" id="port" placeholder="25565" value="25565" />
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Bot Username
+            <input type="text" id="username" placeholder="MyBot" required />
+          </label>
+          <label>MC Version (optional)
+            <input type="text" id="version" placeholder="auto-detect" />
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Auth Mode
+            <select id="auth">
+              <option value="offline">Offline (cracked)</option>
+              <option value="microsoft">Microsoft</option>
+              <option value="mojang">Mojang</option>
+            </select>
+          </label>
+        </div>
+        <div class="btn-row">
+          <button type="submit" id="connect-btn" class="btn primary">Connect</button>
+          <button type="button" id="disconnect-btn" class="btn danger" disabled>Disconnect</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" id="stats-section">
+      <h2>Bot Stats</h2>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">Username</div>
+          <div class="stat-value" id="stat-username">-</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Server</div>
+          <div class="stat-value" id="stat-server">-</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Health</div>
+          <div class="stat-value" id="stat-health">-</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Food</div>
+          <div class="stat-value" id="stat-food">-</div>
+        </div>
+        <div class="stat-box wide">
+          <div class="stat-label">Position (X / Y / Z)</div>
+          <div class="stat-value" id="stat-position">-</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="controls-section">
+      <h2>Controls</h2>
+      <div class="btn-row">
+        <button class="btn action" data-action="jump" disabled>Jump</button>
+        <button class="btn action" data-action="forward" disabled>Move Forward (2s)</button>
+        <button class="btn action" data-action="sneak" disabled>Toggle Sneak</button>
+      </div>
+    </section>
+
+    <section class="card" id="chat-section">
+      <h2>Chat</h2>
+      <form id="chat-form">
+        <div class="form-row">
+          <input type="text" id="chat-input" placeholder="Type a message..." disabled />
+          <button type="submit" class="btn primary" id="chat-send-btn" disabled>Send</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" id="log-section">
+      <h2>Activity Log</h2>
+      <div id="log-list"></div>
+    </section>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
